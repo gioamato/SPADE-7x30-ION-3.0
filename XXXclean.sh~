@@ -1,0 +1,15 @@
+Pause()
+{
+OLDCONFIG=`stty -g`
+stty -icanon -echo min 1 time 0
+dd count=1 2>/dev/null
+stty $OLDCONFIG
+}
+
+echo "Start compiling..."
+export ARCH=arm
+export CROSS_COMPILE=arm-eabi-
+export PATH=$PATH:~/arm-eabi-4.4.3/bin
+make clean CROSS_COMPILE=arm-eabi-
+pause
+
